@@ -1,9 +1,9 @@
-
-
 function App() {
   return (
     <div>
-      Set Up Ready
+     <div className="text-3xl">
+      setup ready with tailwindcss
+     </div>
     </div>
   );
 }
