@@ -1,8 +1,9 @@
-import {Navbar} from './Component'
+import {ProductArea, Navbar} from './Component'
 function App() {
   return (
     <div>
       <Navbar />
+      <ProductArea />
     </div>
   );
 }

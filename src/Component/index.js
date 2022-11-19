@@ -1,3 +1,5 @@
 import Navbar from "./Navbar";
+import ProductArea from "./Home";
 
-export { Navbar };
+
+export { Navbar, ProductArea };
