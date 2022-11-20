@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateProduct } from "../Action/product";
 
 export const ProductDetails = (props) => {
   const [inputTitle, setInputTitle] = useState("");
@@ -7,12 +9,26 @@ export const ProductDetails = (props) => {
   const [isEditing, setIsEditing] = useState({
     edit: false,
   });
-  
+
+  const dispatch = useDispatch();
+
   const onEditHandler = (product) => {
     setIsEditing({ ...isEditing, edit: true });
     setInputTitle(product.title);
-    setInputPrice(Math.round(product.price * 85));
+    setInputPrice(Math.round(product.price));
     setInputDescription(product.description);
+  };
+
+  const onSaveProductHandler = () => {
+    const title = inputTitle;
+    const price = inputPrice;
+    const description = inputDescription;
+    const image = product.image;
+    const category = product.category;
+    const id = product.id;
+    setIsEditing({ ...isEditing, edit: false});
+    dispatch(updateProduct({title, price, description, image, category, id}))
+
   };
 
   const product = props.product;
@@ -50,7 +66,7 @@ export const ProductDetails = (props) => {
           <div className="mx-3 my-3 text-xl text-start basis-2/3">
             {product.title}
             <div className="font-bold">
-              ₹ : {Math.round(product.price * 85)}
+              ₹ : {Math.round(product.price)}
             </div>
           </div>
         )}
@@ -58,6 +74,7 @@ export const ProductDetails = (props) => {
       {/* Right side of product list  */}
       <div className="basis-1/2 grid grid-flow-row">
         <div className="font-bold row-span-1">Description</div>
+
         {isEditing.edit ? (
           <div className="mx-3 text-xs text-justify row-span-5">
             <textarea
@@ -75,9 +92,14 @@ export const ProductDetails = (props) => {
         )}
         {isEditing.edit ? (
           <div className="mx-5 row-span-1 flex justify-end">
-          <button className="px-4 py-1 my-2 text-lg text-white duration-150 bg-[#6366f1] rounded-md hover:bg-indigo-700 active:shadow-lg">
-            Save
-          </button>
+            <button
+              className="px-4 py-1 my-2 text-lg text-white duration-150 bg-[#6366f1] rounded-md hover:bg-indigo-700 active:shadow-lg"
+              onClick={() => {
+                onSaveProductHandler();
+              }}
+            >
+              Save
+            </button>
           </div>
         ) : (
           <div className="mx-5 row-span-1 flex justify-end">
