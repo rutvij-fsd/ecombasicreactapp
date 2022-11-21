@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../Action/product";
 
-import { ProductDetails } from "./ProductDetails";
+import { ProductsDetails } from "./ProductsDetails";
 
 const ProductArea = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const ProductArea = () => {
       </button>
       <div>
         {products.map((product, index) => (
-          <ProductDetails product={product} index={index} />
+          <ProductsDetails product={product} index={index} />
         ))}
       </div>
     </div>

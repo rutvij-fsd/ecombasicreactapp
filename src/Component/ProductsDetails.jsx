@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, updateProduct } from "../Action/product";
 
-export const ProductDetails = (props) => {
+export const ProductsDetails = (props) => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputPrice, setInputPrice] = useState("");
   const [inputDescription, setInputDescription] = useState("");
@@ -18,6 +18,7 @@ export const ProductDetails = (props) => {
     setInputPrice(Math.round(product.price));
     setInputDescription(product.description);
   };
+  const products = useSelector((state) => state.product);
 
   const onSaveProductHandler = () => {
     const title = inputTitle;
@@ -28,6 +29,8 @@ export const ProductDetails = (props) => {
     const id = product.id;
     setIsEditing({ ...isEditing, edit: false });
     dispatch(updateProduct({ title, price, description, image, category, id }));
+    console.log(products)
+
   };
 
   const product = props.product;
@@ -129,4 +132,4 @@ export const ProductDetails = (props) => {
   );
 };
 
-export default ProductDetails;
+export default ProductsDetails;

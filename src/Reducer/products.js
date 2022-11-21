@@ -1,5 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 
+
 const initialState = [];
 
 export const productReducer = createReducer(initialState,{
@@ -19,5 +20,9 @@ export const productReducer = createReducer(initialState,{
     },
     DELETE_PRODUCT : (state, action) => {
         return state.filter((product)=>product.id !== action.id);
+    },
+    ADD_PRODUCT : (state, action) => {
+        console.log(state.concat(action.product))
+        return [action.product, ...state];
     }
 });

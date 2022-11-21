@@ -1,3 +1,6 @@
+import uuid from "react-uuid";
+
+
 export function fetchProduct() {
   return (dispatch) => {
     fetch("https://my-json-server.typicode.com/rutvij-fsd/jsonServer/products")
@@ -49,5 +52,35 @@ export function deleteProduct(id) {
   return {
     type: "DELETE_PRODUCT",
     id
+  };
+}
+
+export function addProduct({title, price, description, image, category}) {
+  return (dispatch) => {
+    fetch(`https://my-json-server.typicode.com/rutvij-fsd/jsonServer/products`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: uuid().split("-")[0],
+        title,
+        price,
+        description,
+        image,
+        category,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        
+        dispatch(addProductSuccess(json))});
+  };
+}
+
+export function addProductSuccess(product){
+  return {
+    type: "ADD_PRODUCT",
+    product
   };
 }
