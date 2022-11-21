@@ -1,10 +1,16 @@
-import {ProductArea, Navbar} from './Component'
+import { ProductArea, Navbar, AddProduct } from "./Component";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   return (
-    <div>
-      <Navbar />
-      <ProductArea />
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<ProductArea/>}/>
+          <Route path="/addProduct" element={<AddProduct/>}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
