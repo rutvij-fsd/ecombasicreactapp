@@ -44,3 +44,10 @@ export function updateProductSuccess(product) {
     product,
   };
 }
+
+export function deleteProduct(id) {
+  return {
+    type: "DELETE_PRODUCT",
+    id
+  };
+}

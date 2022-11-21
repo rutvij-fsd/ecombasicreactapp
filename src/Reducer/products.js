@@ -8,10 +8,16 @@ export const productReducer = createReducer(initialState,{
     },
     UPDATE_PRODUCT_SUCCESS : (state,action)=>{
         return state.map((product,id)=>{
-            if(id !== action.product.id-1){
+            const index = state.findIndex(object => {
+                return object.id === action.product.id;
+              });
+            if(id !== index){
                 return product;
             }
             return {...product,...action.product}
         });
+    },
+    DELETE_PRODUCT : (state, action) => {
+        return state.filter((product)=>product.id !== action.id);
     }
 });

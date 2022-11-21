@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateProduct } from "../Action/product";
+import { deleteProduct, updateProduct } from "../Action/product";
 
 export const ProductDetails = (props) => {
   const [inputTitle, setInputTitle] = useState("");
@@ -117,6 +117,7 @@ export const ProductDetails = (props) => {
               viewBox="0 0 24 24"
               fill="currentColor"
               class="w-6 h-6 mx-3 hover:cursor-pointer"
+              onClick={() => dispatch(deleteProduct(product.id))}
             >
               <path
                 fill-rule="evenodd"
