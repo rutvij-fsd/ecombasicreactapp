@@ -1,4 +1,5 @@
 import uuid from "react-uuid";
+import { ADD_PRODUCT, FETCH_PRODUCT, UPDATE_PRODUCT_SUCCESS } from "../Reducer/productsSlice";
 
 
 export function fetchProduct() {
@@ -6,17 +7,12 @@ export function fetchProduct() {
     fetch("https://my-json-server.typicode.com/rutvij-fsd/jsonServer/products")
       .then((response) => response.json())
       .then((data) => {
-        dispatch(fetchProductAction(data));
+        dispatch(FETCH_PRODUCT(data));
       });
   };
 }
 
-export function fetchProductAction(product) {
-  return {
-    type: "FETCH_PRODUCT",
-    product,
-  };
-}
+
 
 export function updateProduct({title, price, description, image, category, id}) {
   return (dispatch) => {
@@ -37,23 +33,13 @@ export function updateProduct({title, price, description, image, category, id}) 
       .then((res) => res.json())
       .then((json) => {
         
-        dispatch(updateProductSuccess(json))});
+        dispatch(UPDATE_PRODUCT_SUCCESS(json))});
   };
 }
 
-export function updateProductSuccess(product) {
-  return {
-    type: "UPDATE_PRODUCT_SUCCESS",
-    product,
-  };
-}
 
-export function deleteProduct(id) {
-  return {
-    type: "DELETE_PRODUCT",
-    id
-  };
-}
+
+
 
 export function addProduct({title, price, description, image, category}) {
   return (dispatch) => {
@@ -74,13 +60,7 @@ export function addProduct({title, price, description, image, category}) {
       .then((res) => res.json())
       .then((json) => {
         
-        dispatch(addProductSuccess(json))});
+        dispatch(ADD_PRODUCT(json))});
   };
 }
 
-export function addProductSuccess(product){
-  return {
-    type: "ADD_PRODUCT",
-    product
-  };
-}

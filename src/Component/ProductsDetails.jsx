@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteProduct, updateProduct } from "../Action/product";
+import {  updateProduct } from "../Action/product";
+import { DELETE_PRODUCT } from "../Reducer/productsSlice";
 
 export const ProductsDetails = (props) => {
   const [inputTitle, setInputTitle] = useState("");
@@ -120,7 +121,7 @@ export const ProductsDetails = (props) => {
               viewBox="0 0 24 24"
               fill="currentColor"
               className="w-6 h-6 hover:cursor-pointer"
-              onClick={() => dispatch(deleteProduct(product.id))}
+              onClick={() => dispatch(DELETE_PRODUCT(product.id))}
             >
               <path
                 fillRule="evenodd"
