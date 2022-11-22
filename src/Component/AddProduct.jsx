@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../Action/product";
-import ProductArea from "./ProductArea";
+
 
 const AddProduct = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -24,7 +24,7 @@ const AddProduct = () => {
   return (
     <div className="flex flex-col text-center bg-white mx-10 my-2 p-2 container border border-gray-200 w-1/2">
       <label
-        for="title"
+        htmlFor="title"
         className="block py-2 text-gray-900 font-bold text-xl"
       >
         Title
@@ -39,7 +39,7 @@ const AddProduct = () => {
         />
       </div>
       <label
-        for="Product Price"
+        htmlFor="Product Price"
         className="block py-2 text-gray-900 font-bold text-xl"
       >
         Product Price
@@ -54,7 +54,7 @@ const AddProduct = () => {
         />
       </div>
       <label
-        for="Image"
+        htmlFor="Image"
         className="block py-2 text-gray-900 font-bold text-xl"
       >
         Image Url
@@ -69,7 +69,7 @@ const AddProduct = () => {
         />
       </div>
       <label
-        for="category"
+        htmlFor="category"
         className="block py-2 text-gray-900 font-bold text-xl"
       >
         Category
@@ -84,7 +84,7 @@ const AddProduct = () => {
         />
       </div>
       <label
-        for="Description"
+        htmlFor="Description"
         className="block py-2 text-gray-900 font-bold text-xl"
       >
         Product Description
@@ -109,7 +109,6 @@ const AddProduct = () => {
           Save
         </button>
       </div>
-      <ProductArea />
     </div>
   );
 };

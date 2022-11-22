@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteProduct, updateProduct } from "../Action/product";
 
 export const ProductsDetails = (props) => {
@@ -29,8 +30,7 @@ export const ProductsDetails = (props) => {
     const id = product.id;
     setIsEditing({ ...isEditing, edit: false });
     dispatch(updateProduct({ title, price, description, image, category, id }));
-    console.log(products)
-
+    console.log(products);
   };
 
   const product = props.product;
@@ -38,11 +38,14 @@ export const ProductsDetails = (props) => {
     <div className="flex flex-row text-center bg-white mx-10 my-10">
       {/* left side of product list  */}
       <div className="basis-1/2 flex flex-row">
-        <img
-          className="w-32 h-32 mx-5 my-5 basis-1/3"
-          src={product.image}
-          alt={"product"}
-        />
+        <Link to={"/product/" + product.id}>
+          <img
+            className="w-32 h-32 mx-5 my-5 basis-1/3"
+            src={product.image}
+            alt={"product"}
+          />
+        </Link>
+
         {isEditing.edit ? (
           <div className="mx-3 my-3 text-xl text-start basis-2/3">
             <div className="flex items-center text-gray-400 border rounded-md">
@@ -72,7 +75,7 @@ export const ProductsDetails = (props) => {
         )}
       </div>
       {/* Right side of product list  */}
-      <div className="basis-1/2 grid grid-flow-row">
+      <div className="basis-1/2 grid grid-row">
         <div className="font-bold row-span-1">Description</div>
 
         {isEditing.edit ? (

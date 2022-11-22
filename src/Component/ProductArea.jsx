@@ -8,7 +8,7 @@ const ProductArea = () => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.product);
-  console.log("products", products);
+  
   useEffect(() => {
     dispatch(fetchProduct());
   }, [dispatch]);
