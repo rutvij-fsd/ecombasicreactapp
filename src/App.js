@@ -1,4 +1,4 @@
-import { ProductArea, Navbar, AddProduct, ProductDetailPage } from "./Component";
+import { ProductArea, Navbar, AddProduct, ProductDetailPage, CartContainer, Checkout } from "./Component";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   return (
@@ -9,6 +9,8 @@ function App() {
           <Route path="/" element={<ProductArea/>}/>
           <Route path="/addProduct" element={<AddProduct/>}/>
           <Route path="/product/:id" element={<ProductDetailPage/>} />
+          <Route path="/cart" element={<CartContainer/>} />
+          <Route path="/orderplaced" element={<Checkout/>} />
         </Routes>
       </div>
     </Router>

@@ -23,8 +23,7 @@ const productsSlice = createSlice({
       return state.filter((product) => product.id !== action.payload);
     },
     ADD_PRODUCT: (state, action) => {
-      console.log(state.concat(action.product));
-      return [action.product, ...state];
+      return [action.payload, ...state];
     },
   },
 });

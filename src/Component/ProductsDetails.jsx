@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {  updateProduct } from "../Action/product";
+import { updateProduct } from "../Action/product";
+import { addProductToCart, decrease, increase } from "../Reducer/cartSlice";
 import { DELETE_PRODUCT } from "../Reducer/productsSlice";
+
 
 export const ProductsDetails = (props) => {
   const [inputTitle, setInputTitle] = useState("");
@@ -11,6 +13,9 @@ export const ProductsDetails = (props) => {
   const [isEditing, setIsEditing] = useState({
     edit: false,
   });
+
+  const cartProduct = useSelector((state) => state.cart);
+  
 
   const dispatch = useDispatch();
 
@@ -107,28 +112,47 @@ export const ProductsDetails = (props) => {
           </div>
         ) : (
           <div className="mx-5 row-span-1 flex justify-end">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 mx-1 hover:cursor-pointer"
-              onClick={() => onEditHandler(product)}
-            >
-              <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 hover:cursor-pointer"
-              onClick={() => dispatch(DELETE_PRODUCT(product.id))}
-            >
-              <path
-                fillRule="evenodd"
-                d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z"
-                clipRule="evenodd"
-              />
-            </svg>
+            {cartProduct.items.id > 0 ? (<><svg className="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512" onClick={()=> dispatch(decrease(cartProduct.items.id))}>
+          <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+        </svg>
+
+        <div className="mx-2 border text-center w-8 cursor-not-allowed">{cartProduct.items.amount}</div>
+
+        <svg className="fill-current text-gray-600 w-3 cursor-pointer" viewBox="0 0 448 512" onClick={()=> dispatch(increase(cartProduct.items.id))}>
+          <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+        </svg></>):(null)}
+            <div className="flex">
+              <button
+                className="mx-2 px-3 py-1 mb-5 text-lg text-white duration-150 bg-[#6366f1] rounded-md hover:bg-indigo-700 active:shadow-lg"
+                onClick={() => {
+                  dispatch(addProductToCart(product));
+                }}
+              >
+                Add To Cart
+              </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6 mx-1 mt-2 hover:cursor-pointer"
+                onClick={() => onEditHandler(product)}
+              >
+                <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6 mt-1 hover:cursor-pointer"
+                onClick={() => dispatch(DELETE_PRODUCT(product.id))}
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
           </div>
         )}
       </div>
