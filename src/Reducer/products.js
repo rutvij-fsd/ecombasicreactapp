@@ -1,4 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
+import { success } from '../utils/notificationUtils';
 
 
 const initialState = [];
@@ -19,6 +20,7 @@ export const productReducer = createReducer(initialState,{
         });
     },
     DELETE_PRODUCT : (state, action) => {
+        
         return state.filter((product)=>product.id !== action.id);
     },
     ADD_PRODUCT : (state, action) => {

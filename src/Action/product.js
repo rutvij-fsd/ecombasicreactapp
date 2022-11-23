@@ -1,5 +1,6 @@
 import uuid from "react-uuid";
 import { ADD_PRODUCT, FETCH_PRODUCT, UPDATE_PRODUCT_SUCCESS } from "../Reducer/productsSlice";
+import { success } from "../utils/notificationUtils";
 
 
 export function fetchProduct() {
@@ -32,7 +33,7 @@ export function updateProduct({title, price, description, image, category, id}) 
     })
       .then((res) => res.json())
       .then((json) => {
-        
+        success('Product updated successfully!')
         dispatch(UPDATE_PRODUCT_SUCCESS(json))});
   };
 }
@@ -59,7 +60,7 @@ export function addProduct({title, price, description, image, category}) {
     })
       .then((res) => res.json())
       .then((json) => {
-        
+        success("Product created successfully!")
         dispatch(ADD_PRODUCT(json))});
   };
 }

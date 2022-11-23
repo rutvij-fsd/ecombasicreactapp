@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { updateProduct } from "../Action/product";
 import { addProductToCart, decrease, increase } from "../Reducer/cartSlice";
 import { DELETE_PRODUCT } from "../Reducer/productsSlice";
+import { success } from "../utils/notificationUtils";
 
 
 export const ProductsDetails = (props) => {
@@ -125,6 +126,7 @@ export const ProductsDetails = (props) => {
               <button
                 className="mx-2 px-3 py-1 mb-5 text-lg text-white duration-150 bg-[#6366f1] rounded-md hover:bg-indigo-700 active:shadow-lg"
                 onClick={() => {
+                  success("Product Added To cart");
                   dispatch(addProductToCart(product));
                 }}
               >
@@ -144,7 +146,9 @@ export const ProductsDetails = (props) => {
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 className="w-6 h-6 mt-1 hover:cursor-pointer"
-                onClick={() => dispatch(DELETE_PRODUCT(product.id))}
+                onClick={() => {
+                  success("Product deleted successfully!");
+                  dispatch(DELETE_PRODUCT(product.id))}}
               >
                 <path
                   fillRule="evenodd"
