@@ -29,6 +29,7 @@ const cartSlice = createSlice({
     },
     addProductToCart: (state, action) => {
       state.items = [action.payload, ...state.items];
+      state.totalCount = state.items.length;
     },
     remove: (state, action) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
@@ -53,6 +54,7 @@ const cartSlice = createSlice({
     },
     clearCart: (state, action) => {
       state.items = [];
+      state.totalCount = 0;
     },
   },
 });

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../Action/product";
+import { SORT_PRODUCT } from "../Reducer/productsSlice";
 
 import { ProductsDetails } from "./ProductsDetails";
 
@@ -15,10 +16,10 @@ const ProductArea = () => {
 
   return (
     <div className="bg-slate-100">
-      <button className="px-4 py-1 my-2 text-lg text-white duration-150 bg-[#6366f1] rounded-md hover:bg-indigo-700 active:shadow-lg">
+      <button onClick={()=>dispatch(SORT_PRODUCT())} className="px-4 py-1 my-2 text-lg text-white duration-150 bg-[#6366f1] rounded-md hover:bg-indigo-700 active:shadow-lg">
         <span className="flex flex-row ">
           
-          <h1 className="mx-2">Sort</h1>
+          <h1 className="mx-2">Sort by Price</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

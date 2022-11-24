@@ -49,6 +49,7 @@ export function addProduct({title, price, description, image, category}) {
       body: JSON.stringify({
         id: uuid().split("-")[0],
         title,
+        amount:1,
         price,
         description,
         image,

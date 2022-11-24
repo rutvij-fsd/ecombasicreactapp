@@ -6,7 +6,12 @@ const productsSlice = createSlice({
 
   reducers: {
     FETCH_PRODUCT: (state, action) => {
-      return action.payload;
+      if(state.length>0){
+        return [...state];
+      }
+      else{
+        return action.payload;
+      }
     },
     UPDATE_PRODUCT_SUCCESS: (state, action) => {
       return state.map((product, id) => {
@@ -25,6 +30,10 @@ const productsSlice = createSlice({
     ADD_PRODUCT: (state, action) => {
       return [action.payload, ...state];
     },
+    SORT_PRODUCT: (state, action) => {
+     return state.sort((a, b) => (a.price < b.price ? 1 : -1));
+
+    },
   },
 });
 
@@ -33,6 +42,7 @@ export const {
   UPDATE_PRODUCT_SUCCESS,
   DELETE_PRODUCT,
   ADD_PRODUCT,
+  SORT_PRODUCT
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
