@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ecombasicreactapp/static/css/main.83148547.css",
-    "main.js": "/ecombasicreactapp/static/js/main.69e3beb1.js",
+    "main.js": "/ecombasicreactapp/static/js/main.db539d31.js",
     "index.html": "/ecombasicreactapp/index.html",
     "main.83148547.css.map": "/ecombasicreactapp/static/css/main.83148547.css.map",
-    "main.69e3beb1.js.map": "/ecombasicreactapp/static/js/main.69e3beb1.js.map"
+    "main.db539d31.js.map": "/ecombasicreactapp/static/js/main.db539d31.js.map"
   },
   "entrypoints": [
     "static/css/main.83148547.css",
-    "static/js/main.69e3beb1.js"
+    "static/js/main.db539d31.js"
   ]
 }
